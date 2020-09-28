@@ -1,34 +1,26 @@
 const express = require('express');
-const axios = require('axios');
-
+const Twitter = require('./api/helpers/twitter');
+require('dotenv').config()
 
 const app = express()
 const port = 3000
+
+const twitter = new Twitter();
 
 app.get('/tweets', (req, res) => {
   // console.log(req.query)
 
   const query = req.query.q;
   const count = req.query.count;
-  const TWITTER_URL = "https://api.twitter.com/1.1/search/tweets.json";
 
-  axios.get(TWITTER_URL, {
-    params: {
-      q: query,
-      count: count
-    },
-    headers: {
-      "Authorization": "Bearer AAAAAAAAAAAAAAAAAAAAAG9qIAEAAAAAL0WiB0AFrH2DhmJIhQhyppZbhWI%3DbhSUTG7FQWEA3650Lse0lcyrFLhqFfglnpc1ljcQWhqwhtkSmW"
-    }
-  }).then((response) => {
-    // console.log(response.data)
-    res.status(200).send(response.data);
-  }).catch((error) => {
-    console.log(error)
-    res.status(400).send(error);
-  });
+  // console.log(process.env.TWITTER_API_TOKEN)
 
-  // res.send('Hello World!')
+  twitter.get(query, count)
+    .then((response) => {
+      res.status(200).send(response.data);
+    }).catch((error) => {
+      res.status(400).send(error);
+    });
 })
 
 app.listen(port, () => {
