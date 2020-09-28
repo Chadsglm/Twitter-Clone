@@ -7,6 +7,12 @@ const port = 3000
 
 const twitter = new Twitter();
 
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+});
+app.use(express.json());
+
 app.get('/tweets', (req, res) => {
   // console.log(req.query)
 
