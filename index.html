@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Title</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="./assest/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="style/style.css">
+  <script src="https://kit.fontawesome.com/c939d0e917.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container home-page">
+    <div class="navigation-container">
+      <div class="navigation">
+        <nav>
+          <div class="logo">
+            <i class="fab fa-twitter"></i>
+          </div>
+          <div class="nav-item home-link">
+            <i class="fas fa-home"></i>
+          </div>
+          <div class="nav-item profile-container">
+            <div class="profile"></div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="tweets-container">
+        <div class="tweets-search-container">
+          <div class="tweets-search-input">
+            <input id="user-search-input" type="text" placeholder="Search Twitter" />
+            <i class="fas fa-search fa-flip-horizontal"></i>
+          </div>
+        </div>
+
+        <div class="tweets-list">
+          <div class="tweets-welcome-message">
+            <h5>Welcome to Twitter!</h5>
+            <p>Use the search above to see what's happening around the world.</p>
+          </div>
+        </div>
+
+
+        <div class="tweet-user-info">
+          <div class="tweet-user-profile" style="background-image: url(./assest/profile.png);"></div>
+          <div class="tweet-user-name-container">
+            <div class="tweet-user-fullname">Chad Saglam</div>
+            <div class="tweet-user-username">@Chad</div>
+          </div>
+          <div class="tweet-date">
+            3 min ago
+          </div>
+        </div>
+        <div class="tweet-images-container">
+          <div class="tweet-image"
+            style="background-image: url(https://pbs.twimg.com/media/Ei0WWHJUwAE2nvF?format=jpg&name=medium)"></div>
+        </div>
+        <div class="tweet-text-container">
+          <span class="tweet-text">
+            Lorem ipsum dolor sit amet.
+          </span>
+        </div>
+
+
+        <div class="tweet-user-info">
+          <div class="tweet-user-profile" style="background-image: url(./assest/profile.png);"></div>
+          <div class="tweet-user-name-container">
+            <div class="tweet-user-fullname">Chad Saglam</div>
+            <div class="tweet-user-username">@Chad</div>
+          </div>
+          <div class="tweet-date">
+            3 min ago
+          </div>
+        </div>
+        <div class="tweet-video-container">
+          <video controls>
+            <source src="blob:https://twitter.com/0470392c-02d6-458c-96d0-d831f9f67349" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+
+        <div class="tweet-text-container">
+          <span class="tweet-text">
+            Lorem ipsum dolor sit amet.
+          </span>
+        </div>
+
+        <div class="next-page-container">
+          <div id="next-page">
+            <i class="fas fa-arrow-down"></i>
+          </div>
+        </div>
+      </div>
+      <div class="tweets-sidebar-container">
+        <div class="tweets-sidebar">
+          <div class="tweets-trending">
+            <h5>Trends for you</h5>
+            <ul>
+              <li onclick="selectTrend(this)">#Coding</li>
+              <li onclick="selectTrend(this)">#Programminghumor</li>
+              <li onclick="selectTrend(this)">#Python</li>
+              <li onclick="selectTrend(this)">#Tesla</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/index.js" async defer></script>
+</body>
+
+</html>
