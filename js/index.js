@@ -25,12 +25,11 @@ const getTwitterData = () => {
   }).then((response) => {
     return response.json();
   }).then((data) => {
-    console.log(data)
+    // console.log(data)
     return buildTweets(data.statuses);
   });
 }
 
-getTwitterData();
 
 /**
  * Save the next page data
@@ -42,6 +41,9 @@ const saveNextPage = (metadata) => {
  * Handle when a user clicks on a trend
  */
 const selectTrend = (e) => {
+  const trendText = e.innerText;
+  document.getElementById("user-search-input").value = trendText;
+  getTwitterData();
 }
 
 /**
