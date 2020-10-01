@@ -1,6 +1,9 @@
 const URL = "http://localhost:3000/tweets";
 
-
+const nextPageData = {
+  loading: false,
+  url: null
+}
 
 const onEnter = (event) => {
   if (event.key == "Enter") {
@@ -8,25 +11,34 @@ const onEnter = (event) => {
   }
 }
 
+const onNextPage = () => {
+  if (nextPageData.url) {
+    getTwitterData(true);
+  }
+}
+
 /**
  * Retrive Twitter Data from API
  */
-const getTwitterData = () => {
-  // const url = "http://localhost:3000/tweets?q=coding&count=10"
+const getTwitterData = (nextPage = false) => {
   const query = document.getElementById("user-search-input").value;
-  // console.log(query);
   if (!query) return;
-  const encodedQuery = encodeURIComponent(query); // for Hastag "#"
-  const params = `q=${encodedQuery}&count=10`;
-  let fullUrl = `${URL}?${params}`
+  const encodedQuery = encodeURIComponent(query);
+  const params = `q=${encodedQuery}&result_type=mixed`;
+  let fullUrl = `${URL}?${params}`;
+  if (nextPage) {
+    fullUrl = nextPageData.url;
+    nextPageData.loading = true;
+  }
 
   fetch(fullUrl, {
     method: 'GET'
   }).then((response) => {
     return response.json();
   }).then((data) => {
-    // console.log(data)
-    return buildTweets(data.statuses);
+    saveNextPage(data.search_metadata)
+    buildTweets(data.statuses, nextPage);
+    nextPageButtonVisibility(data.search_metadata);
   });
 }
 
@@ -35,6 +47,8 @@ const getTwitterData = () => {
  * Save the next page data
  */
 const saveNextPage = (metadata) => {
+  nextPageData.url = `${URL}${metadata.next_results}`
+  nextPageData.loading = false;
 }
 
 /**
@@ -50,6 +64,12 @@ const selectTrend = (e) => {
  * Set the visibility of next page based on if there is data on next page
  */
 const nextPageButtonVisibility = (metadata) => {
+  // console.log(metadata);
+  let visibility = 'hidden';
+  if (metadata.next_results) {
+    visibility = 'visible';
+  }
+  document.getElementById('next-page').style.visibility = visibility;
 }
 
 /**

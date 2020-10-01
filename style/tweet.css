@@ -127,6 +127,7 @@
   color: #47525d;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  visibility: hidden;
 }
 
 #next-page:hover {
